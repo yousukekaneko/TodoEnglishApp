@@ -19,17 +19,22 @@ class MainActivity : AppCompatActivity() {
         if (R.id.container_detail != null) isTwoPane = true
 
         fab.setOnClickListener { view ->
-            goEditScreen()
+            goEditScreen("", "", "", false, ModeInEdit.EDIT)
         }
     }
 
-    private fun goEditScreen() {
+    private fun goEditScreen(title: String, deadline: String, taskDetail: String, isCompleted: Boolean, mode: ModeInEdit) {
         if (isTwoPane) {
             return
         }
         val intent = Intent(this@MainActivity, EditActivity::class.java).apply {
-
+            putExtra(IntentKey.TITLE.name, title)
+            putExtra(IntentKey.DEADLINE.name, deadline)
+            putExtra(IntentKey.TASK_DETAIL.name, taskDetail)
+            putExtra(IntentKey.IS_COMPLETED.name, isCompleted)
+            putExtra(IntentKey.MODE_IN_EDIT.name, mode)
         }
+        startActivity(intent)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
