@@ -25,13 +25,14 @@ class MainActivity : AppCompatActivity() {
 
     private fun goEditScreen(title: String, deadline: String, taskDetail: String, isCompleted: Boolean, mode: ModeInEdit) {
         if (isTwoPane) {
-            val fragmentManager = supportFragmentManager
-            val fragmentTransaction = fragmentManager.beginTransaction()
-            fragmentTransaction.add(R.id.container_detail, EditFragment.newInstance("1", "1"))
-            fragmentTransaction.commit()
+//            val fragmentManager = supportFragmentManager
+//            val fragmentTransaction = fragmentManager.beginTransaction()
+//            fragmentTransaction.add(R.id.container_detail, EditFragment.newInstance("1", "1"))
+//            fragmentTransaction.commit()
 
             supportFragmentManager.beginTransaction()
-                .add(R.id.container_detail, EditFragment.newInstance("1", "1")).commit()
+                .add(R.id.container_detail,
+                    EditFragment.newInstance("1", "1"), FragmentTag.EDIT.toString()).commit()
 
             return
         }
