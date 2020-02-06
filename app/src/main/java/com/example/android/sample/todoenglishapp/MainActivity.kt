@@ -32,7 +32,8 @@ class MainActivity : AppCompatActivity() {
 
             supportFragmentManager.beginTransaction()
                 .add(R.id.container_detail,
-                    EditFragment.newInstance("1", "1"), FragmentTag.EDIT.toString()).commit()
+                    EditFragment.newInstance(title, deadline, taskDetail, isCompleted, mode),
+                    FragmentTag.EDIT.toString()).commit()
 
             return
         }
