@@ -10,8 +10,12 @@ import androidx.fragment.app.Fragment
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+private val ARG_title = IntentKey.TITLE.name
+private val ARG_deadLine = IntentKey.DEADLINE.name
+private val ARG_taskDetail = IntentKey.TASK_DETAIL.name
+private val ARG_isCompleted = IntentKey.IS_COMPLETED.name
+private val ARG_modeInEdit = IntentKey.MODE_IN_EDIT.name
+
 
 /**
  * A simple [Fragment] subclass.
@@ -25,13 +29,19 @@ class EditFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
+    private var param3: String? = null
+    private var param4: String? = null
+    private var param5: String? = null
     private var listener: OnFragmentInteractionListener? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
+            param1 = it.getString(ARG_title)
+            param2 = it.getString(ARG_deadLine)
+            param3 = it.getString(ARG_taskDetail)
+            param4 = it.getString(ARG_isCompleted)
+            param5 = it.getString(ARG_modeInEdit)
         }
     }
 
@@ -89,11 +99,15 @@ class EditFragment : Fragment() {
          */
         // TODO: Rename and change types and number of parameters
         @JvmStatic
-        fun newInstance(param1: String, param2: String) =
+        fun newInstance(param1: String, param2: String, params3: String, params4: String, params5: String) =
             EditFragment().apply {
                 arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+                    putString(ARG_title, param1)
+                    putString(ARG_deadLine, param2)
+                    putString(ARG_taskDetail, params3)
+                    putString(ARG_isCompleted, params4)
+                    putString(ARG_modeInEdit, params5)
+
                 }
             }
     }
