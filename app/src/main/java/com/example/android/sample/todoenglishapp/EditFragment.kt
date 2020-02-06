@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import java.io.Serializable
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -14,7 +15,7 @@ private val ARG_title = IntentKey.TITLE.name
 private val ARG_deadLine = IntentKey.DEADLINE.name
 private val ARG_taskDetail = IntentKey.TASK_DETAIL.name
 private val ARG_isCompleted = IntentKey.IS_COMPLETED.name
-private val ARG_modeInEdit = IntentKey.MODE_IN_EDIT.name
+private val ARG_mode = IntentKey.MODE_IN_EDIT.name
 
 
 /**
@@ -27,21 +28,21 @@ private val ARG_modeInEdit = IntentKey.MODE_IN_EDIT.name
  */
 class EditFragment : Fragment() {
     // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
-    private var param3: String? = null
-    private var param4: String? = null
-    private var param5: String? = null
+    private var title: String? = null
+    private var deadLine: String? = null
+    private var taskDetail: String? = null
+    private var isCompleted: Boolean? = null
+    private var mode: Serializable? = null
     private var listener: OnFragmentInteractionListener? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-            param1 = it.getString(ARG_title)
-            param2 = it.getString(ARG_deadLine)
-            param3 = it.getString(ARG_taskDetail)
-            param4 = it.getString(ARG_isCompleted)
-            param5 = it.getString(ARG_modeInEdit)
+            title = it.getString(ARG_title)
+            deadLine = it.getString(ARG_deadLine)
+            taskDetail = it.getString(ARG_taskDetail)
+            isCompleted = it.getBoolean(ARG_isCompleted)
+            mode = it.getSerializable(ARG_mode)
         }
     }
 
@@ -99,14 +100,14 @@ class EditFragment : Fragment() {
          */
         // TODO: Rename and change types and number of parameters
         @JvmStatic
-        fun newInstance(param1: String, param2: String, params3: String, params4: String, params5: String) =
+        fun newInstance(title: String, deadLine: String, taskDetail: String, isCompleted: Boolean, mode: ModeInEdit) =
             EditFragment().apply {
                 arguments = Bundle().apply {
-                    putString(ARG_title, param1)
-                    putString(ARG_deadLine, param2)
-                    putString(ARG_taskDetail, params3)
-                    putString(ARG_isCompleted, params4)
-                    putString(ARG_modeInEdit, params5)
+                    putString(ARG_title, title)
+                    putString(ARG_deadLine, deadLine)
+                    putString(ARG_taskDetail, taskDetail)
+                    putBoolean(ARG_isCompleted, isCompleted)
+                    putSerializable(ARG_mode, mode)
 
                 }
             }
