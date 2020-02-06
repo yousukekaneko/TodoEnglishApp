@@ -2,7 +2,6 @@ package com.example.android.sample.todoenglishapp
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_edit.*
 
 class EditActivity : AppCompatActivity() {
@@ -12,9 +11,11 @@ class EditActivity : AppCompatActivity() {
         setContentView(R.layout.activity_edit)
         setSupportActionBar(toolbar)
 
-        fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show()
+        toolbar.apply {
+            setNavigationIcon(R.drawable.ic_arrow_back_black_24dp)
+            setNavigationOnClickListener{
+                finish()
+            }
         }
     }
 
