@@ -18,6 +18,20 @@ class EditActivity : AppCompatActivity() {
                 finish()
             }
         }
+
+        val bundle = intent.extras
+        val title = bundle.getString(IntentKey.TITLE.name)
+        val deadline = bundle.getString(IntentKey.DEADLINE.name)
+        val taskDetail = bundle.getString(IntentKey.TASK_DETAIL.name)
+        val isCompleted = bundle.getBoolean(IntentKey.IS_COMPLETED.name)
+        val mode = bundle?.getSerializable(IntentKey.MODE_IN_EDIT.name) as ModeInEdit
+
+        supportFragmentManager.beginTransaction()
+            .add(R.id.container_detail,
+                EditFragment.newInstance(title, deadline, taskDetail, isCompleted, mode),
+                FragmentTag.EDIT.toString()).commit()
+
+        return
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
