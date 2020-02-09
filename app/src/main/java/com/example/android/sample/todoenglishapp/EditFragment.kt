@@ -37,12 +37,15 @@ class EditFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            title = it.getString(ARG_title)
-            deadLine = it.getString(ARG_deadLine)
-            taskDetail = it.getString(ARG_taskDetail)
-            isCompleted = it.getBoolean(ARG_isCompleted)
-            mode = it.getSerializable(ARG_mode)
+
+        if (arguments != null) {
+            arguments?.let {
+                title = it.getString(ARG_title)
+                deadLine = it.getString(ARG_deadLine)
+                taskDetail = it.getString(ARG_taskDetail)
+                isCompleted = it.getBoolean(ARG_isCompleted)
+                mode = it.getSerializable(ARG_mode) as ModeInEdit
+            }
         }
     }
 
