@@ -7,7 +7,7 @@ import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), EditFragment.OnFragmentInteractionListener {
 
     var isTwoPane: Boolean = false
 
@@ -66,5 +66,9 @@ class MainActivity : AppCompatActivity() {
             R.id.action_settings -> true
             else -> super.onOptionsItemSelected(item)
         }
+    }
+
+    override fun onDatePickerLaunched() {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 }
