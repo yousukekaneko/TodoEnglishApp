@@ -60,7 +60,7 @@ class EditFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        updateUi(mode)
+        updateUi(mode!!)
     }
 
     private fun updateUi(mode: ModeInEdit) {
