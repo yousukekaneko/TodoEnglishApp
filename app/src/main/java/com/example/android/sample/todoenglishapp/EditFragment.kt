@@ -1,7 +1,6 @@
 package com.example.android.sample.todoenglishapp
 
 import android.content.Context
-import android.net.Uri
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
@@ -60,7 +59,10 @@ class EditFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        updateUi(mode!!)
+        updateUi(mode!! as ModeInEdit)
+        imageButtonDateSet.setOnClickListener {
+            listener!!.onDatePickerLaunched()
+        }
     }
 
     private fun updateUi(mode: ModeInEdit) {
@@ -85,11 +87,6 @@ class EditFragment : Fragment() {
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         return super.onOptionsItemSelected(item)
-    }
-
-    // TODO: Rename method, update argument and hook method into UI event
-    fun onButtonPressed(uri: Uri) {
-        listener?.onFragmentInteraction(uri)
     }
 
     override fun onAttach(context: Context) {
@@ -119,7 +116,7 @@ class EditFragment : Fragment() {
      */
     interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
-        fun onFragmentInteraction(uri: Uri)
+        fun onDatePickerLaunched()
     }
 
     companion object {
