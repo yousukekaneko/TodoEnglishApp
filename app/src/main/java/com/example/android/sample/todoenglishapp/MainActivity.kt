@@ -69,6 +69,6 @@ class MainActivity : AppCompatActivity(), EditFragment.OnFragmentInteractionList
     }
 
     override fun onDatePickerLaunched() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        DatePickerDialogFragment().show(supportFragmentManager,FragmentTag.DATE_PICKER.toString())
     }
 }
