@@ -43,6 +43,7 @@ class DatePickerDialogFragment: DialogFragment(), DatePickerDialog.OnDateSetList
 
     override fun onDateSet(datePicker: DatePicker?, year: Int, month: Int, day: Int) {
         val dateString = getDateString(year, month, day)
+        listener?.onDateSelected()
     }
 
     private fun getDateString(year: Int, month: Int, day: Int): String {
