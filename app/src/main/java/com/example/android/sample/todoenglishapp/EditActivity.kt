@@ -2,7 +2,9 @@ package com.example.android.sample.todoenglishapp
 
 import android.os.Bundle
 import android.view.Menu
+import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.material.textfield.TextInputEditText
 import kotlinx.android.synthetic.main.activity_edit.*
 
 class EditActivity : AppCompatActivity(), EditFragment.OnFragmentInteractionListener,
@@ -49,7 +51,7 @@ class EditActivity : AppCompatActivity(), EditFragment.OnFragmentInteractionList
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
-    override fun onDateSelected() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
+    override fun onDateSelected(dateString: String) {
+        val inputDeadlineText = findViewById<TextInputEditText>(R.id.inputDeadlineText) as EditText
+        inputDeadlineText.setText(dateString)    }
 }
