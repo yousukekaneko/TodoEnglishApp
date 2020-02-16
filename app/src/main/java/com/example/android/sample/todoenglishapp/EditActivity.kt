@@ -6,7 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_edit.*
 
 class EditActivity : AppCompatActivity(), EditFragment.OnFragmentInteractionListener,
-    DatePickerDialogFragment.OnDateSetListner{
+    DatePickerDialogFragment.OnDateSetListener{
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
