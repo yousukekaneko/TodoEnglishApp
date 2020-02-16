@@ -4,11 +4,13 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.material.textfield.TextInputEditText
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(), EditFragment.OnFragmentInteractionListener,
-        DatePickerDialogFragment.OnDateSetListner {
+        DatePickerDialogFragment.OnDateSetListener {
 
     var isTwoPane: Boolean = false
 
@@ -73,7 +75,8 @@ class MainActivity : AppCompatActivity(), EditFragment.OnFragmentInteractionList
         DatePickerDialogFragment().show(supportFragmentManager,FragmentTag.DATE_PICKER.toString())
     }
 
-    override fun onDateSelected() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun onDateSelected(dateString: String) {
+        val inputDeadlineText = findViewById<TextInputEditText>(R.id.inputDeadlineText) as EditText
+        inputDeadlineText.setText(dateString)
     }
 }

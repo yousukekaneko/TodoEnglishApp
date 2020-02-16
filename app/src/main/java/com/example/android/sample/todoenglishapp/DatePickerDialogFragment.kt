@@ -11,11 +11,11 @@ import java.util.*
 
 class DatePickerDialogFragment: DialogFragment(), DatePickerDialog.OnDateSetListener {
 
-    var listener: OnDateSetListner? = null
+    var listener: OnDateSetListener? = null
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        if (context is OnDateSetListner) {
+        if (context is OnDateSetListener) {
             listener = context
         } else {
             throw RuntimeException(context.toString() + " must implement OnFragmentInteractionListener")
@@ -27,8 +27,8 @@ class DatePickerDialogFragment: DialogFragment(), DatePickerDialog.OnDateSetList
         listener = null
     }
 
-    interface OnDateSetListner {
-        fun onDateSelected()
+    interface OnDateSetListener {
+        fun onDateSelected(dataString: String)
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
