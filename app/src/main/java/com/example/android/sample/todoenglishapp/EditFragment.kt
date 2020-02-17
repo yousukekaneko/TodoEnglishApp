@@ -4,6 +4,7 @@ import android.content.Context
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
+import io.realm.Realm
 import kotlinx.android.synthetic.main.fragment_edit.*
 import java.io.Serializable
 
@@ -96,6 +97,24 @@ class EditFragment : Fragment() {
             ModeInEdit.EDIT -> editExistTodo()
         }
 
+    }
+
+    private fun editExistTodo() {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    private fun addNewTodo() {
+        val realm = Realm.getDefaultInstance()
+        realm.beginTransaction()
+        val newTodo = realm.createObject(TodoModel::class.java)
+        newTodo.apply {
+            title = inputTitleText.text.toString()
+            deadLine = inputDeadlineText.text.toString()
+            taskDetail = inputDetailText.text.toString()
+            isCompleted = checkBox.isChecked
+        }
+        realm.commitTransaction()
+        realm.close()
     }
 
     override fun onAttach(context: Context) {
