@@ -90,6 +90,14 @@ class EditFragment : Fragment() {
         return super.onOptionsItemSelected(item)
     }
 
+    private fun recordToRealmDB(mode: ModeInEdit?) {
+        when (mode) {
+            ModeInEdit.NEW_ENTRY -> addNewTodo()
+            ModeInEdit.EDIT -> editExistTodo()
+        }
+
+    }
+
     override fun onAttach(context: Context) {
         super.onAttach(context)
         if (context is OnFragmentInteractionListener) {
