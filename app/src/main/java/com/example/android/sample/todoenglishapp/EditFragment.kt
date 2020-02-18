@@ -103,6 +103,18 @@ class EditFragment : Fragment() {
 
     }
 
+    private fun isRequiredFilledCheck(): Boolean {
+        if (inputTitleText.text.toString() == "") {
+            inputTitleText.error = getString(R.string.error)
+            return false
+        }
+        if (inputDeadlineText.text.toString() == "") {
+            inputDetailText.error = getString(R.string.error)
+            return false
+        }
+        return true
+    }
+
     private fun editExistTodo() {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
