@@ -92,6 +92,10 @@ class EditFragment : Fragment() {
     }
 
     private fun recordToRealmDB(mode: ModeInEdit?) {
+
+        val isRequiredItemsFilled = isRequiredFilledCheck()
+        if (!isRequiredItemsFilled) return
+
         when (mode) {
             ModeInEdit.NEW_ENTRY -> addNewTodo()
             ModeInEdit.EDIT -> editExistTodo()
