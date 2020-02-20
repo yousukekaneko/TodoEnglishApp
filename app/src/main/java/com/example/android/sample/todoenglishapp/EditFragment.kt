@@ -100,7 +100,8 @@ class EditFragment : Fragment() {
             ModeInEdit.NEW_ENTRY -> addNewTodo()
             ModeInEdit.EDIT -> editExistTodo()
         }
-
+        listener?.onDatePickerLaunched()
+        fragmentManager!!.beginTransaction().remove(this).commit()
     }
 
     private fun isRequiredFilledCheck(): Boolean {
