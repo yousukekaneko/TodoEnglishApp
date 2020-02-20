@@ -25,7 +25,7 @@ class MainActivity : AppCompatActivity(), EditFragment.OnFragmentInteractionList
         supportFragmentManager.beginTransaction().add(R.id.container_master, MasterFragment.newInstance(1),
             FragmentTag.MASTER.toString()).commit()
 
-        fab.setOnClickListener { view ->
+        fab.setOnClickListener {
             goEditScreen("", "", "", false, ModeInEdit.EDIT)
         }
     }
