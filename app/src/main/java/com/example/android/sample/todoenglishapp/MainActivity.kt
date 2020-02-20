@@ -19,7 +19,11 @@ class MainActivity : AppCompatActivity(), EditFragment.OnFragmentInteractionList
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
 
+        //スマホかタブレットを判定
         if (R.id.container_detail != null) isTwoPane = true
+
+        supportFragmentManager.beginTransaction().add(R.id.container_master, MasterFragment.newInstance(1),
+            FragmentTag.MASTER.toString()).commit()
 
         fab.setOnClickListener { view ->
             goEditScreen("", "", "", false, ModeInEdit.EDIT)
