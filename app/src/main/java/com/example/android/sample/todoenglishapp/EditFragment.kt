@@ -100,7 +100,7 @@ class EditFragment : Fragment() {
             ModeInEdit.NEW_ENTRY -> addNewTodo()
             ModeInEdit.EDIT -> editExistTodo()
         }
-        listener?.onDatePickerLaunched()
+        listener?.onDataEdited()
         fragmentManager!!.beginTransaction().remove(this).commit()
     }
 
@@ -162,6 +162,7 @@ class EditFragment : Fragment() {
     interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         fun onDatePickerLaunched()
+        fun onDataEdited()
     }
 
     companion object {

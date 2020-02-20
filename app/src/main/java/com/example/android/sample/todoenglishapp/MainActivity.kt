@@ -75,6 +75,10 @@ class MainActivity : AppCompatActivity(), EditFragment.OnFragmentInteractionList
         DatePickerDialogFragment().show(supportFragmentManager,FragmentTag.DATE_PICKER.toString())
     }
 
+    override fun onDataEdited() {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
     override fun onDateSelected(dateString: String) {
         val inputDeadlineText = findViewById<TextInputEditText>(R.id.inputDeadlineText) as EditText
         inputDeadlineText.setText(dateString)

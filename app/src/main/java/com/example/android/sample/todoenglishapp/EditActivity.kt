@@ -51,6 +51,10 @@ class EditActivity : AppCompatActivity(), EditFragment.OnFragmentInteractionList
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
+    override fun onDataEdited() {
+        finish()
+    }
+
     override fun onDateSelected(dateString: String) {
         val inputDeadlineText = findViewById<TextInputEditText>(R.id.inputDeadlineText) as EditText
         inputDeadlineText.setText(dateString)    }
