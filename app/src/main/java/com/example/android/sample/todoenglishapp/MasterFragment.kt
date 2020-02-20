@@ -3,6 +3,7 @@ package com.example.android.sample.todoenglishapp
 import android.content.Context
 import android.os.Bundle
 import android.view.*
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -58,6 +59,13 @@ class MasterFragment : Fragment() {
             findItem(R.id.menu_register).isVisible = false
             findItem(R.id.action_settings).isVisible = true
         }
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        if (item!!.itemId == R.id.action_settings) {
+            Toast(activity)
+        }
+        return super.onOptionsItemSelected(item)
     }
 
     override fun onAttach(context: Context) {
