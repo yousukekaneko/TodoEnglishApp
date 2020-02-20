@@ -2,9 +2,8 @@ package com.example.android.sample.todoenglishapp
 
 import android.content.Context
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -37,6 +36,7 @@ class MasterFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_master_list, container, false)
+        setHasOptionsMenu(true)
 
         // Set the adapter
         if (view is RecyclerView) {
@@ -49,6 +49,23 @@ class MasterFragment : Fragment() {
             }
         }
         return view
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
+        super.onCreateOptionsMenu(menu, inflater)
+        menu!!.apply {
+            findItem(R.id.menu_delete).isVisible = false
+            findItem(R.id.menu_edit).isVisible = false
+            findItem(R.id.menu_register).isVisible = false
+            findItem(R.id.action_settings).isVisible = true
+        }
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        if (item!!.itemId == R.id.action_settings) {
+            Toast(activity)
+        }
+        return super.onOptionsItemSelected(item)
     }
 
     override fun onAttach(context: Context) {
