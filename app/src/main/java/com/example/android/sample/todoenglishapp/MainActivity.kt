@@ -30,6 +30,11 @@ class MainActivity : AppCompatActivity(), EditFragment.OnFragmentInteractionList
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+        onDataEdited()
+    }
+
     private fun goEditScreen(title: String, deadline: String, taskDetail: String, isCompleted: Boolean, mode: ModeInEdit) {
         if (isTwoPane) {
 //            val fragmentManager = supportFragmentManager
@@ -79,8 +84,14 @@ class MainActivity : AppCompatActivity(), EditFragment.OnFragmentInteractionList
         DatePickerDialogFragment().show(supportFragmentManager,FragmentTag.DATE_PICKER.toString())
     }
 
+    //タブレットの時のリスト更新
     override fun onDataEdited() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        updateTodoList()
+    }
+
+    private fun updateTodoList() {
+        supportFragmentManager.beginTransaction().replace(R.id.container_master, MasterFragment.newInstance(1),
+            FragmentTag.MASTER.toString()).commit()
     }
 
     override fun onDateSelected(dateString: String) {
