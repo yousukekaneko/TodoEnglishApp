@@ -10,6 +10,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.android.sample.todoenglishapp.MasterFragment.OnListFragmentInteractionListener
 import io.realm.RealmResults
 import kotlinx.android.synthetic.main.fragment_master.view.*
+import java.text.SimpleDateFormat
+import java.util.*
 
 /**
  * [RecyclerView.Adapter] that can display a [DummyItem] and makes a call to the
@@ -43,6 +45,14 @@ class MyMasterRecyclerViewAdapter(
         holder.textViewTitle.text = item.title
         holder.textViewDeadline.text = item.deadLine
         holder.imageStatus
+
+        val changedDeadline = SimpleDateFormat("yyyy/MM/dd").parse(item.deadLine)
+        val today = Date()
+        if (today >= changedDeadline) {
+            holder.imageStatus.setImageResource(R.drawable.ic_warning_black_24dp)
+        } else {
+            holder.imageStatus.setImageResource(R.drawable.ic_work_black_24dp)
+        }
 
         with(holder.mView) {
             tag = item
