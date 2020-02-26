@@ -8,8 +8,6 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.android.sample.todoenglishapp.dummy.DummyContent
-import com.example.android.sample.todoenglishapp.dummy.DummyContent.DummyItem
 import io.realm.Realm
 import io.realm.Sort
 
@@ -101,8 +99,7 @@ class MasterFragment : Fragment() {
      * for more information.
      */
     interface OnListFragmentInteractionListener {
-        // TODO: Update argument type and name
-        fun onListFragmentInteraction(item: DummyItem?)
+        fun onListItemClicked(item: TodoModel?)
     }
 
     companion object {

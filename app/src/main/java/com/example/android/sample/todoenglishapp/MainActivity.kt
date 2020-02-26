@@ -10,7 +10,8 @@ import com.google.android.material.textfield.TextInputEditText
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(), EditFragment.OnFragmentInteractionListener,
-        DatePickerDialogFragment.OnDateSetListener {
+        DatePickerDialogFragment.OnDateSetListener,
+        MasterFragment.OnListFragmentInteractionListener{
 
     var isTwoPane: Boolean = false
 
@@ -97,5 +98,9 @@ class MainActivity : AppCompatActivity(), EditFragment.OnFragmentInteractionList
     override fun onDateSelected(dateString: String) {
         val inputDeadlineText = findViewById<TextInputEditText>(R.id.inputDeadlineText) as EditText
         inputDeadlineText.setText(dateString)
+    }
+
+    override fun onListItemClicked(item: TodoModel?) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 }
