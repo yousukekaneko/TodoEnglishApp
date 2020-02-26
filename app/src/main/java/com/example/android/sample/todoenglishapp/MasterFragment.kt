@@ -101,8 +101,7 @@ class MasterFragment : Fragment() {
      * for more information.
      */
     interface OnListFragmentInteractionListener {
-        // TODO: Update argument type and name
-        fun onListFragmentInteraction(item: DummyItem?)
+        fun onListItemClicked(item: TodoModel?)
     }
 
     companion object {
