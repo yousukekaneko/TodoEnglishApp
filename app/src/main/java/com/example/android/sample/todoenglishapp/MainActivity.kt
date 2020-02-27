@@ -52,7 +52,7 @@ class MainActivity : AppCompatActivity(), EditFragment.OnFragmentInteractionList
         }
         val intent = Intent(this@MainActivity, EditActivity::class.java).apply {
             putExtra(IntentKey.TITLE.name, title)
-            putExtra(IntentKey.DEADLINE.name, deadline)
+            putExtra(IntentKey.deadline.name, deadline)
             putExtra(IntentKey.TASK_DETAIL.name, taskDetail)
             putExtra(IntentKey.IS_COMPLETED.name, isCompleted)
             putExtra(IntentKey.MODE_IN_EDIT.name, mode)
@@ -96,11 +96,29 @@ class MainActivity : AppCompatActivity(), EditFragment.OnFragmentInteractionList
     }
 
     override fun onDateSelected(dateString: String) {
-        val inputDeadlineText = findViewById<TextInputEditText>(R.id.inputDeadlineText) as EditText
-        inputDeadlineText.setText(dateString)
+        val inputdeadlineText = findViewById<TextInputEditText>(R.id.inputdeadlineText) as EditText
+        inputdeadlineText.setText(dateString)
     }
 
     override fun onListItemClicked(item: TodoModel?) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        goDetailScreen(item?.title, item?.deadline, item?.taskDetail, item?.isCompleted)
+    }
+
+    private fun goDetailScreen(
+        title: String?,
+        deadline: String?,
+        taskDetail: String?,
+        isCompleted: Boolean?
+    ) {
+        if (isTwoPane) {
+            return
+        }
+        val intent = Intent(this@MainActivity, DetailActivity::class.java).apply {
+            putExtra(IntentKey.TITLE.name, title)
+            putExtra(IntentKey.deadline.name, deadline)
+            putExtra(IntentKey.TASK_DETAIL.name, taskDetail)
+            putExtra(IntentKey.IS_COMPLETED.name, isCompleted)
+        }
+        startActivity(intent)
     }
 }

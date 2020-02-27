@@ -5,7 +5,7 @@ import io.realm.RealmObject
 open class TodoModel : RealmObject() {
 
     var title : String = ""
-    var deadLine : String = ""
+    var deadline : String = ""
     var taskDetail : String = ""
     var isCompleted : Boolean = false
 }

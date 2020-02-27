@@ -43,12 +43,12 @@ class MyMasterRecyclerViewAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = mValues[position]
         holder.textViewTitle.text = item.title
-        holder.textViewDeadline.text = MyApplication.appContext.getString(R.string.deadline) + " : " + item.deadLine
+        holder.textViewdeadline.text = MyApplication.appContext.getString(R.string.deadline) + " : " + item.deadline
         holder.imageStatus
 
-        val changedDeadline = SimpleDateFormat("yyyy/MM/dd").parse(item.deadLine)
+        val changeddeadline = SimpleDateFormat("yyyy/MM/dd").parse(item.deadline)
         val today = Date()
-        if (today >= changedDeadline) {
+        if (today >= changeddeadline) {
             holder.imageStatus.setImageResource(R.drawable.ic_warning_black_24dp)
         } else {
             holder.imageStatus.setImageResource(R.drawable.ic_work_black_24dp)
@@ -64,7 +64,7 @@ class MyMasterRecyclerViewAdapter(
 
     inner class ViewHolder(val mView: View) : RecyclerView.ViewHolder(mView) {
         val textViewTitle : TextView = mView.textViewTitle
-        val textViewDeadline : TextView = mView.textViewDeadline
+        val textViewdeadline : TextView = mView.textViewdeadline
         val imageStatus : ImageView = mView.imageStatus
 
         var mItem : TodoModel? = null

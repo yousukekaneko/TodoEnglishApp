@@ -49,7 +49,7 @@ class MasterFragment : Fragment() {
                 val realm = Realm.getDefaultInstance()
                 val result = realm.where(TodoModel::class.java)
                     .equalTo(TodoModel::isCompleted.name , false)
-                    .findAllSorted(TodoModel::deadLine.name, Sort.ASCENDING)
+                    .findAllSorted(TodoModel::deadline.name, Sort.ASCENDING)
                 adapter = MyMasterRecyclerViewAdapter(result, listener)
             }
         }
