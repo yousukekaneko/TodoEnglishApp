@@ -11,7 +11,7 @@ import java.io.Serializable
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 private val ARG_title = IntentKey.TITLE.name
-private val ARG_deadLine = IntentKey.DEADLINE.name
+private val ARG_deadline = IntentKey.deadline.name
 private val ARG_taskDetail = IntentKey.TASK_DETAIL.name
 private val ARG_isCompleted = IntentKey.IS_COMPLETED.name
 private val ARG_mode = IntentKey.MODE_IN_EDIT.name
@@ -28,7 +28,7 @@ private val ARG_mode = IntentKey.MODE_IN_EDIT.name
 class EditFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var title: String? = null
-    private var deadLine: String? = null
+    private var deadline: String? = null
     private var taskDetail: String? = null
     private var isCompleted: Boolean? = null
     private var mode: Serializable? = null
@@ -40,7 +40,7 @@ class EditFragment : Fragment() {
         if (arguments != null) {
             arguments?.let {
                 title = it.getString(ARG_title)
-                deadLine = it.getString(ARG_deadLine)
+                deadline = it.getString(ARG_deadline)
                 taskDetail = it.getString(ARG_taskDetail)
                 isCompleted = it.getBoolean(ARG_isCompleted)
                 mode = it.getSerializable(ARG_mode) as ModeInEdit
@@ -109,7 +109,7 @@ class EditFragment : Fragment() {
             inputTitleText.error = getString(R.string.error)
             return false
         }
-        if (inputDeadlineText.text.toString() == "") {
+        if (inputdeadlineText.text.toString() == "") {
             inputDetailText.error = getString(R.string.error)
             return false
         }
@@ -126,7 +126,7 @@ class EditFragment : Fragment() {
         val newTodo = realm.createObject(TodoModel::class.java)
         newTodo.apply {
             title = inputTitleText.text.toString()
-            deadLine = inputDeadlineText.text.toString()
+            deadline = inputdeadlineText.text.toString()
             taskDetail = inputDetailText.text.toString()
             isCompleted = checkBox.isChecked
         }
@@ -176,11 +176,11 @@ class EditFragment : Fragment() {
          */
         // TODO: Rename and change types and number of parameters
         @JvmStatic
-        fun newInstance(title: String, deadLine: String, taskDetail: String, isCompleted: Boolean, mode: ModeInEdit) =
+        fun newInstance(title: String, deadline: String, taskDetail: String, isCompleted: Boolean, mode: ModeInEdit) =
             EditFragment().apply {
                 arguments = Bundle().apply {
                     putString(ARG_title, title)
-                    putString(ARG_deadLine, deadLine)
+                    putString(ARG_deadline, deadline)
                     putString(ARG_taskDetail, taskDetail)
                     putBoolean(ARG_isCompleted, isCompleted)
                     putSerializable(ARG_mode, mode)

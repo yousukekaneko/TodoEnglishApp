@@ -24,7 +24,7 @@ class EditActivity : AppCompatActivity(), EditFragment.OnFragmentInteractionList
 
         val bundle = intent.extras
         val title = bundle.getString(IntentKey.TITLE.name)
-        val deadline = bundle.getString(IntentKey.DEADLINE.name)
+        val deadline = bundle.getString(IntentKey.deadline.name)
         val taskDetail = bundle.getString(IntentKey.TASK_DETAIL.name)
         val isCompleted = bundle.getBoolean(IntentKey.IS_COMPLETED.name)
         val mode = bundle?.getSerializable(IntentKey.MODE_IN_EDIT.name) as ModeInEdit
@@ -56,6 +56,6 @@ class EditActivity : AppCompatActivity(), EditFragment.OnFragmentInteractionList
     }
 
     override fun onDateSelected(dateString: String) {
-        val inputDeadlineText = findViewById<TextInputEditText>(R.id.inputDeadlineText) as EditText
-        inputDeadlineText.setText(dateString)    }
+        val inputdeadlineText = findViewById<TextInputEditText>(R.id.inputdeadlineText) as EditText
+        inputdeadlineText.setText(dateString)    }
 }
