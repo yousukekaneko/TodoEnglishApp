@@ -101,6 +101,17 @@ class MainActivity : AppCompatActivity(), EditFragment.OnFragmentInteractionList
     }
 
     override fun onListItemClicked(item: TodoModel?) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        goDetailScreen(item?.title, item?.deadLine, item?.taskDetail, item?.isCompleted)
+    }
+
+    private fun goDetailScreen(
+        title: String?,
+        deadLine: String?,
+        taskDetail: String?,
+        completed: Boolean?
+    ) {
+        if (isTwoPane) {
+
+        }
     }
 }
