@@ -111,6 +111,18 @@ class MainActivity : AppCompatActivity(), EditFragment.OnFragmentInteractionList
         isCompleted: Boolean?
     ) {
         if (isTwoPane) {
+            if (supportFragmentManager.findFragmentByTag(FragmentTag.EDIT.toString()) == null &&
+                    supportFragmentManager.findFragmentByTag(FragmentTag.DETAIL.toString()) == null) {
+                supportFragmentManager.beginTransaction()
+                    .add(R.id.container_detail,
+                        DetailFragment.newInstance(title, deadline, taskDetail, isCompleted),
+                        FragmentTag.DETAIL.toString()).commit()
+            } else {
+                supportFragmentManager.beginTransaction()
+                    .replace(R.id.container_detail,
+                        DetailFragment.newInstance(title, deadline, taskDetail, isCompleted),
+                        FragmentTag.DETAIL.toString()).commit()
+            }
             return
         }
         val intent = Intent(this@MainActivity, DetailActivity::class.java).apply {
