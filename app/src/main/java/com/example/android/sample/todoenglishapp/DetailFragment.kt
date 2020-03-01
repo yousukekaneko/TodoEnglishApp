@@ -8,10 +8,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+private val ARG_title = IntentKey.TITLE.name
+private val ARG_deadline = IntentKey.deadline.name
+private val ARG_taskDetail = IntentKey.TASK_DETAIL.name
+private val ARG_isCompleted = IntentKey.IS_COMPLETED.name
 
 /**
  * A simple [Fragment] subclass.
@@ -22,18 +22,24 @@ private const val ARG_PARAM2 = "param2"
  * create an instance of this fragment.
  */
 class DetailFragment : Fragment() {
-    private val ARG_title = IntentKey.TITLE.name
-    private val ARG_deadline = IntentKey.deadline.name
-    private val ARG_taskDetail = IntentKey.TASK_DETAIL.name
-    private val ARG_isCompleted = IntentKey.IS_COMPLETED.name
+
+    private var title: String? = null
+    private var deadline: String? = null
+    private var taskDetail: String? = null
+    private var isCompleted: Boolean? = null
 
     private var listener: OnFragmentInteractionListener? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
+
+        if (arguments != null) {
+            arguments?.let {
+                title = it.getString(ARG_title)
+                deadline = it.getString(ARG_deadline)
+                taskDetail = it.getString(ARG_taskDetail)
+                isCompleted = it.getBoolean(ARG_isCompleted)
+            }
         }
     }
 
@@ -43,11 +49,6 @@ class DetailFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_detail, container, false)
-    }
-
-    // TODO: Rename method, update argument and hook method into UI event
-    fun onButtonPressed(uri: Uri) {
-        listener?.onFragmentInteraction(uri)
     }
 
     override fun onAttach(context: Context) {
@@ -76,7 +77,6 @@ class DetailFragment : Fragment() {
      * for more information.
      */
     interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
         fun onFragmentInteraction(uri: Uri)
     }
 
@@ -89,15 +89,16 @@ class DetailFragment : Fragment() {
          * @param param2 Parameter 2.
          * @return A new instance of fragment DetailFragment.
          */
-        // TODO: Rename and change types and number of parameters
+
         @JvmStatic
-        fun newInstance(title: String, deadline: String, taskDetail: String, isCompleted: Boolean, mode: ModeInEdit) =
+        fun newInstance(title: String, deadline: String, taskDetail: String, isCompleted: Boolean?) =
             DetailFragment().apply {
                 arguments = Bundle().apply {
                     putString(ARG_title, title)
                     putString(ARG_deadline, deadline)
                     putString(ARG_taskDetail, taskDetail)
                     putBoolean(ARG_isCompleted, isCompleted)
+                }
             }
     }
 }
