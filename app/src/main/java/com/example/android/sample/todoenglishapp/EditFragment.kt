@@ -9,7 +9,7 @@ import kotlinx.android.synthetic.main.fragment_edit.*
 import java.io.Serializable
 
 private val ARG_title = IntentKey.TITLE.name
-private val ARG_deadline = IntentKey.deadline.name
+private val ARG_deadline = IntentKey.DEAD_LINE.name
 private val ARG_taskDetail = IntentKey.TASK_DETAIL.name
 private val ARG_isCompleted = IntentKey.IS_COMPLETED.name
 private val ARG_mode = IntentKey.MODE_IN_EDIT.name

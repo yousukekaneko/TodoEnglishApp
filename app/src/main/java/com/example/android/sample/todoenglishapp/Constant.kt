@@ -1,7 +1,7 @@
 package com.example.android.sample.todoenglishapp
 
 enum class IntentKey {
-    TITLE, deadline, TASK_DETAIL, IS_COMPLETED, MODE_IN_EDIT
+    TITLE, DEAD_LINE, TASK_DETAIL, IS_COMPLETED, MODE_IN_EDIT
 }
 
 enum class ModeInEdit {
