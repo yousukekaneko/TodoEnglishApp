@@ -8,14 +8,11 @@ import io.realm.Realm
 import kotlinx.android.synthetic.main.fragment_edit.*
 import java.io.Serializable
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 private val ARG_title = IntentKey.TITLE.name
 private val ARG_deadline = IntentKey.deadline.name
 private val ARG_taskDetail = IntentKey.TASK_DETAIL.name
 private val ARG_isCompleted = IntentKey.IS_COMPLETED.name
 private val ARG_mode = IntentKey.MODE_IN_EDIT.name
-
 
 /**
  * A simple [Fragment] subclass.
@@ -26,7 +23,7 @@ private val ARG_mode = IntentKey.MODE_IN_EDIT.name
  * create an instance of this fragment.
  */
 class EditFragment : Fragment() {
-    // TODO: Rename and change types of parameters
+
     private var title: String? = null
     private var deadline: String? = null
     private var taskDetail: String? = null
@@ -160,7 +157,6 @@ class EditFragment : Fragment() {
      * for more information.
      */
     interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
         fun onDatePickerLaunched()
         fun onDataEdited()
     }
@@ -174,7 +170,7 @@ class EditFragment : Fragment() {
          * @param param2 Parameter 2.
          * @return A new instance of fragment EditFragment.
          */
-        // TODO: Rename and change types and number of parameters
+
         @JvmStatic
         fun newInstance(title: String, deadline: String, taskDetail: String, isCompleted: Boolean, mode: ModeInEdit) =
             EditFragment().apply {
@@ -184,7 +180,6 @@ class EditFragment : Fragment() {
                     putString(ARG_taskDetail, taskDetail)
                     putBoolean(ARG_isCompleted, isCompleted)
                     putSerializable(ARG_mode, mode)
-
                 }
             }
     }
