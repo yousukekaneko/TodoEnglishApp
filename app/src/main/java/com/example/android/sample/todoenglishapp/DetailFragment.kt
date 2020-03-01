@@ -9,7 +9,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 
 private val ARG_title = IntentKey.TITLE.name
-private val ARG_deadline = IntentKey.deadline.name
+private val ARG_deadline = IntentKey.DEAD_LINE.name
 private val ARG_taskDetail = IntentKey.TASK_DETAIL.name
 private val ARG_isCompleted = IntentKey.IS_COMPLETED.name
 
@@ -91,7 +91,7 @@ class DetailFragment : Fragment() {
          */
 
         @JvmStatic
-        fun newInstance(title: String, deadline: String, taskDetail: String, isCompleted: Boolean?) =
+        fun newInstance(title: String, deadline: String, taskDetail: String, isCompleted: Boolean) =
             DetailFragment().apply {
                 arguments = Bundle().apply {
                     putString(ARG_title, title)
