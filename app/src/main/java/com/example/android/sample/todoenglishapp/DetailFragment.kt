@@ -5,6 +5,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
+import kotlinx.android.synthetic.main.fragment_detail.*
 
 private val ARG_title = IntentKey.TITLE.name
 private val ARG_deadline = IntentKey.DEAD_LINE.name
@@ -49,6 +50,13 @@ class DetailFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_detail, container, false)
     }
 
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        title_detail.text = title
+        deadline_detail.text = deadline
+        todo_detail.text = taskDetail
+    }
+
     override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
         super.onCreateOptionsMenu(menu, inflater)
         menu!!.apply {
@@ -57,6 +65,14 @@ class DetailFragment : Fragment() {
             findItem(R.id.menu_register).isVisible = true
         }
     }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        when (item!!.itemId) {
+
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
     override fun onAttach(context: Context) {
         super.onAttach(context)
         if (context is OnFragmentInteractionListener) {
