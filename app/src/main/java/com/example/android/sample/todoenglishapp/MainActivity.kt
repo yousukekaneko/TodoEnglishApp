@@ -127,7 +127,7 @@ class MainActivity : AppCompatActivity(), EditFragment.OnFragmentInteractionList
         }
         val intent = Intent(this@MainActivity, DetailActivity::class.java).apply {
             putExtra(IntentKey.TITLE.name, title)
-            putExtra(IntentKey.deadline.name, deadline)
+            putExtra(IntentKey.DEAD_LINE.name, deadline)
             putExtra(IntentKey.TASK_DETAIL.name, taskDetail)
             putExtra(IntentKey.IS_COMPLETED.name, isCompleted)
         }
