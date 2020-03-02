@@ -34,9 +34,9 @@ class DetailActivity : AppCompatActivity() {
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu_main, menu)
         menu!!.apply {
-            findItem(R.id.menu_delete).isVisible = false
-            findItem(R.id.menu_edit).isVisible = false
-            findItem(R.id.menu_register).isVisible = false
+            findItem(R.id.menu_delete).isVisible = true
+            findItem(R.id.menu_edit).isVisible = true
+            findItem(R.id.menu_register).isVisible = true
         }
         return true
     }
