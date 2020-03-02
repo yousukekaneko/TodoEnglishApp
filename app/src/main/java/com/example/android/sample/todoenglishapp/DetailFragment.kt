@@ -3,9 +3,7 @@ package com.example.android.sample.todoenglishapp
 import android.content.Context
 import android.net.Uri
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.fragment.app.Fragment
 
 private val ARG_title = IntentKey.TITLE.name
@@ -51,6 +49,14 @@ class DetailFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_detail, container, false)
     }
 
+    override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
+        super.onCreateOptionsMenu(menu, inflater)
+        menu!!.apply {
+            findItem(R.id.menu_delete).isVisible = true
+            findItem(R.id.menu_edit).isVisible = true
+            findItem(R.id.menu_register).isVisible = true
+        }
+    }
     override fun onAttach(context: Context) {
         super.onAttach(context)
         if (context is OnFragmentInteractionListener) {
