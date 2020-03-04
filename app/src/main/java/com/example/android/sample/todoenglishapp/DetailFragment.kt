@@ -5,6 +5,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
+import io.realm.Realm
 import kotlinx.android.synthetic.main.fragment_detail.*
 
 private val ARG_title = IntentKey.TITLE.name
@@ -76,7 +77,15 @@ class DetailFragment : Fragment() {
     }
 
     private fun deleteSelectedTodo(title: String?, deadline: String?, taskDetail: String?) {
-
+        val realm = Realm.getDefaultInstance()
+        val selectedTodo = realm.where(TodoModel::class.java)
+            .equalTo(TodoModel::title.name,title)
+            .equalTo(TodoModel::deadline.name,deadline)
+            .equalTo(TodoModel::taskDetail.name, taskDetail)
+            .findFirst()
+        realm.beginTransaction()
+        selectedTodo.deleteFromRealm()
+        realm.commitTransaction()
     }
 
     override fun onAttach(context: Context) {
