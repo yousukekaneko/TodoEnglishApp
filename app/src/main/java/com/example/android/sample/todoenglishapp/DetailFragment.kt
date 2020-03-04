@@ -68,9 +68,15 @@ class DetailFragment : Fragment() {
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         when (item!!.itemId) {
-
+            R.id.menu_delete -> {
+                deleteSelectedTodo(title, deadline, taskDetail)
+            }
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    private fun deleteSelectedTodo(title: String?, deadline: String?, taskDetail: String?) {
+
     }
 
     override fun onAttach(context: Context) {
