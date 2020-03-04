@@ -1,7 +1,6 @@
 package com.example.android.sample.todoenglishapp
 
 import android.content.Context
-import android.net.Uri
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
@@ -86,6 +85,9 @@ class DetailFragment : Fragment() {
         realm.beginTransaction()
         selectedTodo.deleteFromRealm()
         realm.commitTransaction()
+
+        listener?.onDataDeleted()
+        fragmentManager!!.beginTransaction().remove(this).commit()
     }
 
     override fun onAttach(context: Context) {
@@ -114,7 +116,7 @@ class DetailFragment : Fragment() {
      * for more information.
      */
     interface OnFragmentInteractionListener {
-        fun onFragmentInteraction(uri: Uri)
+        fun onDataDeleted()
     }
 
     companion object {

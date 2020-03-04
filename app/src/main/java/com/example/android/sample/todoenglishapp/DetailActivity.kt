@@ -5,7 +5,7 @@ import android.view.Menu
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_detail.*
 
-class DetailActivity : AppCompatActivity() {
+class DetailActivity : AppCompatActivity(), DetailFragment.OnFragmentInteractionListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,5 +39,9 @@ class DetailActivity : AppCompatActivity() {
             findItem(R.id.menu_register).isVisible = true
         }
         return true
+    }
+
+    override fun onDataDeleted() {
+        finish()
     }
 }
