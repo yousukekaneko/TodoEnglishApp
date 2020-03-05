@@ -116,12 +116,12 @@ class MainActivity : AppCompatActivity(), EditFragment.OnFragmentInteractionList
                     supportFragmentManager.findFragmentByTag(FragmentTag.DETAIL.toString()) == null) {
                 supportFragmentManager.beginTransaction()
                     .add(R.id.container_detail,
-                        DetailFragment.newInstance(title, deadline, taskDetail, isCompleted),
+                        DetailFragment.newInstance(title!!, deadline!!, taskDetail!!, isCompleted!!),
                         FragmentTag.DETAIL.toString()).commit()
             } else {
                 supportFragmentManager.beginTransaction()
                     .replace(R.id.container_detail,
-                        DetailFragment.newInstance(title, deadline, taskDetail, isCompleted),
+                        DetailFragment.newInstance(title!!, deadline!!, taskDetail!!, isCompleted!!),
                         FragmentTag.DETAIL.toString()).commit()
             }
             return
