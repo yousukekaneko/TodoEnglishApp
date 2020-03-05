@@ -11,7 +11,8 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(), EditFragment.OnFragmentInteractionListener,
         DatePickerDialogFragment.OnDateSetListener,
-        MasterFragment.OnListFragmentInteractionListener{
+        MasterFragment.OnListFragmentInteractionListener,
+        DetailFragment.OnFragmentInteractionListener{
 
     var isTwoPane: Boolean = false
 
@@ -115,12 +116,12 @@ class MainActivity : AppCompatActivity(), EditFragment.OnFragmentInteractionList
                     supportFragmentManager.findFragmentByTag(FragmentTag.DETAIL.toString()) == null) {
                 supportFragmentManager.beginTransaction()
                     .add(R.id.container_detail,
-                        DetailFragment.newInstance(title, deadline, taskDetail, isCompleted),
+                        DetailFragment.newInstance(title!!, deadline!!, taskDetail!!, isCompleted!!),
                         FragmentTag.DETAIL.toString()).commit()
             } else {
                 supportFragmentManager.beginTransaction()
                     .replace(R.id.container_detail,
-                        DetailFragment.newInstance(title, deadline, taskDetail, isCompleted),
+                        DetailFragment.newInstance(title!!, deadline!!, taskDetail!!, isCompleted!!),
                         FragmentTag.DETAIL.toString()).commit()
             }
             return
@@ -132,5 +133,19 @@ class MainActivity : AppCompatActivity(), EditFragment.OnFragmentInteractionList
             putExtra(IntentKey.IS_COMPLETED.name, isCompleted)
         }
         startActivity(intent)
+    }
+
+    override fun onDataDeleted() {
+        updateTodoList()
+    }
+
+    override fun onEditSelectedTodo(
+        title: String,
+        deadline: String,
+        taskDetail: String,
+        isCompleted: Boolean,
+        mode: ModeInEdit
+    ) {
+        goEditScreen(title, deadline, taskDetail, isCompleted, mode)
     }
 }

@@ -1,11 +1,12 @@
 package com.example.android.sample.todoenglishapp
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_detail.*
 
-class DetailActivity : AppCompatActivity() {
+class DetailActivity : AppCompatActivity(), DetailFragment.OnFragmentInteractionListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,5 +40,27 @@ class DetailActivity : AppCompatActivity() {
             findItem(R.id.menu_register).isVisible = true
         }
         return true
+    }
+
+    override fun onDataDeleted() {
+        finish()
+    }
+
+    override fun onEditSelectedTodo(
+        title: String,
+        deadline: String,
+        taskDetail: String,
+        isCompleted: Boolean,
+        mode: ModeInEdit
+    ) {
+        val intent = Intent(this@DetailActivity, EditActivity::class.java).apply {
+            putExtra(IntentKey.TITLE.name, title)
+            putExtra(IntentKey.DEAD_LINE.name, deadline)
+            putExtra(IntentKey.TASK_DETAIL.name, taskDetail)
+            putExtra(IntentKey.IS_COMPLETED.name, isCompleted)
+            putExtra(IntentKey.MODE_IN_EDIT.name, mode)
+        }
+        startActivity(intent)
+        finish()
     }
 }
