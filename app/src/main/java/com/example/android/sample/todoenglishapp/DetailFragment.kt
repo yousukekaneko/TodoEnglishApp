@@ -71,6 +71,9 @@ class DetailFragment : Fragment() {
             R.id.menu_delete -> {
                 deleteSelectedTodo(title, deadline, taskDetail)
             }
+            R.id.menu_edit -> {
+                listener?.onEditSelectedTodo(title!!, deadline!!, taskDetail!!, isCompleted!!, ModeInEdit.EDIT)
+            }
         }
         return super.onOptionsItemSelected(item)
     }
@@ -117,6 +120,8 @@ class DetailFragment : Fragment() {
      */
     interface OnFragmentInteractionListener {
         fun onDataDeleted()
+        fun onEditSelectedTodo(title: String, deadline: String, taskDetail: String,
+                               isCompleted: Boolean, mode: ModeInEdit)
     }
 
     companion object {
