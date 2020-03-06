@@ -66,10 +66,13 @@ class EditFragment : Fragment() {
     private fun updateUi(mode: ModeInEdit) {
         when (mode) {
             ModeInEdit.NEW_ENTRY -> {
-
+                checkBox.visibility = View.INVISIBLE
             }
             ModeInEdit.EDIT -> {
-                checkBox.visibility = View.INVISIBLE
+                inputTitleText.setText(title)
+                inputDetailText.setText(deadline)
+                inputDetailText.setText(taskDetail)
+                checkBox.isChecked = this.isCompleted!!
             }
         }
     }
