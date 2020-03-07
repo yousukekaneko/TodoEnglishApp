@@ -6,7 +6,6 @@ import android.view.*
 import androidx.fragment.app.Fragment
 import io.realm.Realm
 import kotlinx.android.synthetic.main.fragment_edit.*
-import java.io.Serializable
 
 private val ARG_title = IntentKey.TITLE.name
 private val ARG_deadline = IntentKey.DEAD_LINE.name
@@ -24,11 +23,11 @@ private val ARG_mode = IntentKey.MODE_IN_EDIT.name
  */
 class EditFragment : Fragment() {
 
-    private var title: String? = null
-    private var deadline: String? = null
-    private var taskDetail: String? = null
-    private var isCompleted: Boolean? = null
-    private var mode: Serializable? = null
+    private var title: String? = ""
+    private var deadline: String? = ""
+    private var taskDetail: String? = ""
+    private var isCompleted: Boolean? = false
+    private var mode: ModeInEdit? = null
     private var listener: OnFragmentInteractionListener? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
