@@ -23,10 +23,10 @@ private val ARG_mode = IntentKey.MODE_IN_EDIT.name
  */
 class EditFragment : Fragment() {
 
-    private var title: String? = null
-    private var deadline: String? = null
-    private var taskDetail: String? = null
-    private var isCompleted: Boolean? = null
+    private var title: String? = ""
+    private var deadline: String? = ""
+    private var taskDetail: String? = ""
+    private var isCompleted: Boolean? = false
     private var mode: ModeInEdit? = null
     private var listener: OnFragmentInteractionListener? = null
 
