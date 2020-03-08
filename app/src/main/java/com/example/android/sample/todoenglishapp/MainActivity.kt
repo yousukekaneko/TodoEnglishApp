@@ -82,8 +82,8 @@ class MainActivity : AppCompatActivity(), EditFragment.OnFragmentInteractionList
         }
     }
 
-    override fun onDatePickerLaunched() {
-        DatePickerDialogFragment().show(supportFragmentManager,FragmentTag.DATE_PICKER.toString())
+    override fun onDataPickerLaunched() {
+        DatePickerDialogFragment().show(supportFragmentManager, FragmentTag.DATE_PICKER.toString())
     }
 
     //タブレットの時のリスト更新
