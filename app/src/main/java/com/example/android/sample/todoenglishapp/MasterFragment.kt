@@ -56,7 +56,7 @@ class MasterFragment : Fragment() {
         return view
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
         menu!!.apply {
             findItem(R.id.menu_delete).isVisible = false
@@ -66,7 +66,7 @@ class MasterFragment : Fragment() {
         }
     }
 
-    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item!!.itemId == R.id.action_settings) {
             Toast(activity)
         }

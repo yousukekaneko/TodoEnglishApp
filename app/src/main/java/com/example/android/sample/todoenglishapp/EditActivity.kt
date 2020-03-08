@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.Menu
 import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
-import com.google.android.material.textfield.TextInputEditText
 import kotlinx.android.synthetic.main.activity_edit.*
 
 class EditActivity : AppCompatActivity(), EditFragment.OnFragmentInteractionListener,
@@ -47,8 +46,8 @@ class EditActivity : AppCompatActivity(), EditFragment.OnFragmentInteractionList
         return true
     }
 
-    override fun onDatePickerLaunched() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun onDataPickerLaunched() {
+        DatePickerDialogFragment().show(supportFragmentManager, FragmentTag.DATE_PICKER.toString())
     }
 
     override fun onDataEdited() {
@@ -56,6 +55,6 @@ class EditActivity : AppCompatActivity(), EditFragment.OnFragmentInteractionList
     }
 
     override fun onDateSelected(dateString: String) {
-        val inputdeadlineText = findViewById<TextInputEditText>(R.id.inputdeadlineText) as EditText
+        val inputdeadlineText = findViewById<EditText>(R.id.inputdeadlineText)
         inputdeadlineText.setText(dateString)    }
 }

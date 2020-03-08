@@ -57,16 +57,16 @@ class DetailFragment : Fragment() {
         todo_detail.text = taskDetail
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
         menu!!.apply {
             findItem(R.id.menu_delete).isVisible = true
             findItem(R.id.menu_edit).isVisible = true
-            findItem(R.id.menu_register).isVisible = true
+            findItem(R.id.menu_register).isVisible = false
         }
     }
 
-    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item!!.itemId) {
             R.id.menu_delete -> {
                 deleteSelectedTodo(title, deadline, taskDetail)
