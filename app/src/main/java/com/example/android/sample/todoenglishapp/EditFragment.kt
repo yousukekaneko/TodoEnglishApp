@@ -26,21 +26,20 @@ class EditFragment : Fragment() {
     private var title: String? = ""
     private var deadline: String? = ""
     private var taskDetail: String? = ""
-    private var isCompleted: Boolean? = false
+    private var isCompleted: Boolean = false
     private var mode: ModeInEdit? = null
+
     private var listener: OnFragmentInteractionListener? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        arguments?.let {
+            title = it.getString(ARG_title)
+            deadline = it.getString(ARG_deadline)
+            taskDetail = it.getString(ARG_taskDetail)
+            isCompleted = it.getBoolean(ARG_isCompleted)
+            mode = it.getSerializable(ARG_mode) as ModeInEdit
 
-        if (arguments != null) {
-            arguments?.let {
-                title = it.getString(ARG_title)
-                deadline = it.getString(ARG_deadline)
-                taskDetail = it.getString(ARG_taskDetail)
-                isCompleted = it.getBoolean(ARG_isCompleted)
-                mode = it.getSerializable(ARG_mode) as ModeInEdit
-            }
         }
     }
 
@@ -48,30 +47,30 @@ class EditFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_edit, container, false)
-            setHasOptionsMenu(true)
+        setHasOptionsMenu(true)
         return view
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        updateUi(mode!! as ModeInEdit)
+        //mode!!が使えないので以下の記述に変更
+        mode?.let { updateUi(it) }
         imageButtonDateSet.setOnClickListener {
-            listener!!.onDatePickerLaunched()
+            listener!!.onDataPickerLaunched()
         }
     }
 
     private fun updateUi(mode: ModeInEdit) {
-        when (mode) {
+        when(mode) {
             ModeInEdit.NEW_ENTRY -> {
                 checkBox.visibility = View.INVISIBLE
             }
             ModeInEdit.EDIT -> {
                 inputTitleText.setText(title)
-                inputDetailText.setText(deadline)
+                inputdeadlineText.setText(deadline)
                 inputDetailText.setText(taskDetail)
-                checkBox.isChecked = this.isCompleted!!
+                if (isCompleted) checkBox.isChecked = true else isCompleted
             }
         }
     }
@@ -82,52 +81,60 @@ class EditFragment : Fragment() {
             findItem(R.id.menu_delete).isVisible = false
             findItem(R.id.menu_edit).isVisible = false
             findItem(R.id.menu_register).isVisible = true
+
         }
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+
         if (item!!.itemId == R.id.menu_register) recordToRealmDB(mode)
         return super.onOptionsItemSelected(item)
     }
 
     private fun recordToRealmDB(mode: ModeInEdit?) {
 
+        // タイトルと期日がセットされていないと登録できない
         val isRequiredItemsFilled = isRequiredFilledCheck()
         if (!isRequiredItemsFilled) return
 
+        //TODO 無理やりmodeがnullでも単語をスケジュールを追加できるようにしたが、修正必要
+//        if (mode == null ) {
+//            addNewTodo()
+//        }
         when (mode) {
             ModeInEdit.NEW_ENTRY -> addNewTodo()
-            ModeInEdit.EDIT -> editExistTodo()
+            ModeInEdit.EDIT -> editExistingTodo()
         }
         listener?.onDataEdited()
-        fragmentManager!!.beginTransaction().remove(this).commit()
+        fragmentManager?.beginTransaction()?.remove(this)?.commit()
     }
 
     private fun isRequiredFilledCheck(): Boolean {
-        if (inputTitleText.text.toString() == "") {
+        if (inputTitleText.text.toString() == ""){
             inputTitleText.error = getString(R.string.error)
             return false
         }
         if (inputdeadlineText.text.toString() == "") {
-            inputDetailText.error = getString(R.string.error)
+            inputdeadlineText.error = getString(R.string.error)
             return false
         }
         return true
     }
 
-    private fun editExistTodo() {
+    private fun editExistingTodo() {
         val realm = Realm.getDefaultInstance()
+        realm.beginTransaction()
         val selectedTodo = realm.where(TodoModel::class.java)
             .equalTo(TodoModel::title.name, title)
             .equalTo(TodoModel::deadline.name, deadline)
             .equalTo(TodoModel::taskDetail.name, taskDetail)
             .findFirst()
-        realm.beginTransaction()
-        selectedTodo.apply {
+
+        selectedTodo!!.apply {
             title = inputTitleText.text.toString()
-            taskDetail = inputDetailText.text.toString()
             deadline = inputdeadlineText.text.toString()
-            isCompleted = checkBox.isChecked
+            taskDetail = inputDetailText.text.toString()
+            isCompleted = if (checkBox.isChecked) true else false
         }
         realm.commitTransaction()
         realm.close()
@@ -141,7 +148,7 @@ class EditFragment : Fragment() {
             title = inputTitleText.text.toString()
             deadline = inputdeadlineText.text.toString()
             taskDetail = inputDetailText.text.toString()
-            isCompleted = checkBox.isChecked
+            isCompleted = if (checkBox.isChecked) true else false
         }
         realm.commitTransaction()
         realm.close()
@@ -173,7 +180,7 @@ class EditFragment : Fragment() {
      * for more information.
      */
     interface OnFragmentInteractionListener {
-        fun onDatePickerLaunched()
+        fun onDataPickerLaunched()
         fun onDataEdited()
     }
 
@@ -187,9 +194,16 @@ class EditFragment : Fragment() {
          * @return A new instance of fragment EditFragment.
          */
 
+        private val ARG_title = IntentKey.TITLE.name
+        private val ARG_deadline = IntentKey.DEAD_LINE.name
+        private val ARG_taskDetail = IntentKey.TASK_DETAIL.name
+        private val ARG_isCompleted = IntentKey.IS_COMPLETED.name
+        private val ARG_mode = IntentKey.MODE_IN_EDIT.name
+
         @JvmStatic
-        fun newInstance(title: String, deadline: String, taskDetail: String, isCompleted: Boolean, mode: ModeInEdit) =
-            EditFragment().apply {
+        fun newInstance(title: String, deadline: String, taskDetail: String, isCompleted: Boolean, mode: ModeInEdit): EditFragment {
+
+            return EditFragment().apply {
                 arguments = Bundle().apply {
                     putString(ARG_title, title)
                     putString(ARG_deadline, deadline)
@@ -198,5 +212,6 @@ class EditFragment : Fragment() {
                     putSerializable(ARG_mode, mode)
                 }
             }
+        }
     }
 }
