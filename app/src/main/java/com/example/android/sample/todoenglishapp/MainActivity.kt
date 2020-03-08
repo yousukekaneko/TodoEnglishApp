@@ -8,6 +8,7 @@ import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.textfield.TextInputEditText
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.content_detail.*
 
 class MainActivity : AppCompatActivity(), EditFragment.OnFragmentInteractionListener,
         DatePickerDialogFragment.OnDateSetListener,
@@ -22,13 +23,13 @@ class MainActivity : AppCompatActivity(), EditFragment.OnFragmentInteractionList
         setSupportActionBar(toolbar)
 
         //スマホかタブレットを判定
-        if (R.id.container_detail != null) isTwoPane = true
+        if (container_detail != null) isTwoPane = true
 
         supportFragmentManager.beginTransaction().add(R.id.container_master, MasterFragment.newInstance(1),
             FragmentTag.MASTER.toString()).commit()
 
         fab.setOnClickListener {
-            goEditScreen("", "", "", false, ModeInEdit.EDIT)
+            goEditScreen("", "", "", false, ModeInEdit.NEW_ENTRY)
         }
     }
 
